@@ -37,8 +37,8 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME}}
           tags: |
-            # handlebars
             type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=sha,format=long
 
       - name: Build and push
         id: push
