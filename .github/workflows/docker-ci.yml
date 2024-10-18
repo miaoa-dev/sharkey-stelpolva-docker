@@ -39,6 +39,7 @@ jobs:
           tags: |
             type=schedule,pattern={{date 'YYYYMMDD'}}
             type=sha,format=long
+            type=raw,value=latest
 
       - name: Build and push
         id: push
