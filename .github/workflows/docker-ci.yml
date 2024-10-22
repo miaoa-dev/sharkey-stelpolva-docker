@@ -24,6 +24,8 @@ jobs:
         with:
           repository: 'Lhcfl/sharkey-stelpolva' # 替换为目标公开项目的 GitHub 仓库
           ref: stelpolva # 确保检查出特定的分支
+          submodules: true
+          lfs: true
           
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
