@@ -26,6 +26,12 @@ jobs:
           ref: stelpolva # 确保检查出特定的分支
           submodules: true
           lfs: true
+ 
+      - name: Fetch package version
+        id: get_version
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
           
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -41,6 +47,7 @@ jobs:
           tags: |
             type=schedule,pattern={{date 'YYYYMMDD'}}
             type=sha,format=long
+            type=raw,value=${{ env.VERSION }}
             type=raw,value=latest
 
       - name: Build and push
