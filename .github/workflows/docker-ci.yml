@@ -35,8 +35,18 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo $COMMIT_SHA > hash
           echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV         
+
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          path: files
+
+      - name: Copy hash file to current repository
+        run: |
+          mv hash files/
       
       - name: Commit and push hash file
+        working-directory: files
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
